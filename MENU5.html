@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Asian Sushi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Optima, 'Segoe UI', sans-serif;
+      background: url('https://i.imgur.com/lcjZGqa.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #111;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      width: 220px;
+      margin-bottom: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.9);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form select,
+    form input[type="checkbox"],
+    form button {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    form button {
+      margin-top: 1.5rem;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1rem;
+      color: #555;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asian Sushi</h1>
+    <img src="https://i.imgur.com/6H7fRJ6.png" alt="Logo Asian Sushi" class="logo" />
+  </header>
+
+  <nav>
+    <a href="#promos">Promos</a>
+    <a href="#premium">Rolls Premium</a>
+    <a href="#entrantes">Entrantes</a>
+    <a href="#arma">Arma tu Rolls</a>
+  </nav>
+
+  <section id="promos">
+    <h2>Promos</h2>
+    <p>Aquí irán las promociones destacadas del día o semana.</p>
+  </section>
+
+  <section id="premium">
+    <h2>Rolls Premium</h2>
+    <p>Listado de rolls premium con imágenes o descripciones.</p>
+  </section>
+
+  <section id="entrantes">
+    <h2>Entrantes</h2>
+    <p>Entradas frías o calientes disponibles en el menú.</p>
+  </section>
+
+  <section id="arma">
+    <h2>Arma tu Rolls</h2>
+    <form id="pedidoForm">
+      <label>Selecciona tu proteína:</label><br>
+      <select name="proteina">
+        <option value="salmón">Salmón</option>
+        <option value="pollo">Pollo</option>
+        <option value="tempura">Tempura</option>
+      </select><br><br>
+
+      <label>Ingredientes extra:</label><br>
+      <input type="checkbox" name="extra" value="queso crema"> Queso crema<br>
+      <input type="checkbox" name="extra" value="palta"> Palta<br>
+      <input type="checkbox" name="extra" value="cebollín"> Cebollín<br><br>
+
+      <label>Bebida:</label><br>
+      <select name="bebida">
+        <option value="Coca-Cola">Coca-Cola</option>
+        <option value="Sprite">Sprite</option>
+        <option value="Té helado">Té helado</option>
+      </select><br><br>
+
+      <button type="submit">Enviar pedido por WhatsApp</button>
+    </form>
+  </section>
+
+  <footer>
+    Contáctanos: +56 9 1234 5678 • Síguenos en redes sociales
+  </footer>
+
+  <script>
+    document.getElementById("pedidoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const proteina = this.proteina.value;
+      const bebida = this.bebida.value;
+
+      const extras = Array.from(this.querySelectorAll('input[name="extra"]:checked'))
+        .map(cb => cb.value)
+        .join(", ");
+
+      const mensaje = `Hola, quiero pedir un roll con ${proteina}, extras: ${extras || 'ninguno'} y bebida: ${bebida}.`;
+
+      const telefono = "56912345678"; // ← Reemplaza con tu número real
+      const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+</html>
